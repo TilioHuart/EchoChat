@@ -1,16 +1,17 @@
 #ifndef APP_HPP
 #define APP_HPP
-#include <string>
+#include "user.hpp"
+#include <memory>
 
-class App {
-   public:
+class App
+{
+  public:
     App();
     ~App();
     int launch_app();
 
-   private:
-    std::string user;
-    bool isOn;
+  private:
+    std::unique_ptr<User> self_user;
 };
 
 #endif

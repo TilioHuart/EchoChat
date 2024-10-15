@@ -2,11 +2,19 @@
 
 #include <string>
 
-User::User(std::string user_name, std::string ip_address)
+User::User(const std::string& user_name)
 {
     this->user_name = user_name.empty() ? "Voldemort" : user_name;
-    this->ip_address = ip_address.empty() ? "0" : ip_address;
+    this->ip_address = "";
 }
+
+User::User(const std::string& user_name, const std::string& ip_address)
+{
+    this->user_name = user_name.empty() ? "Voldemort" : user_name;
+    this->ip_address = ip_address;
+}
+
+User::~User() {}
 
 std::string
 User::get_user_name()
@@ -21,7 +29,7 @@ User::get_ip_address()
 }
 
 void
-User::change_user_name(std::string new_user_name)
+User::change_user_name(const std::string& new_user_name)
 {
     this->user_name = new_user_name.empty() ? this->user_name : new_user_name;
 }
