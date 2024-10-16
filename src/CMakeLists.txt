@@ -1,5 +1,7 @@
 add_executable(EchoChat
     main.cpp
+    app/app.cpp
+    app/user.cpp
 )
 
 set_target_properties(EchoChat PROPERTIES
