@@ -3,7 +3,7 @@
 #include <memory>
 
 App::App()
-  : self_user(std::make_unique<User>("Voldemort"))
+  : self_user("User1")
 {
 }
 

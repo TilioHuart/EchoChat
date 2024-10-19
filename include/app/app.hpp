@@ -11,7 +11,10 @@ class App
     int launch_app();
 
   private:
-    std::unique_ptr<User> self_user;
+    User self_user;
+
+    int initialize_network();
+    int kill_network();
 };
 
 #endif
