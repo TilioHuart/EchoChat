@@ -1,9 +1,15 @@
 #include "network/network.hpp"
 #include "my_macros.hpp"
 #include <boost/asio.hpp>
+#include <boost/asio/io_context.hpp>
 #include <boost/asio/io_service.hpp>
 
-Network::Network() {}
+Network::Network()
+  : io_service()
+  , socket(io_service)
+  , buffer()
+{
+}
 
 Network::~Network() {}
 

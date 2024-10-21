@@ -2,6 +2,8 @@
 #define NETWORK_HPP_
 
 #include <boost/asio/io_service.hpp>
+#include <boost/asio/ip/tcp.hpp>
+#include <boost/asio/streambuf.hpp>
 #include <string>
 
 class Network
@@ -14,6 +16,8 @@ class Network
 
   private:
     boost::asio::io_service io_service;
+    boost::asio::ip::tcp::socket socket;
+    boost::asio::streambuf buffer;
 
     int convert_string_to_send_data(const std::string& data);
     std::string convert_received_data_to_string(const int data);
