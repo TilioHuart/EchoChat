@@ -12,5 +12,6 @@ App::~App() {}
 int
 App::launch_app()
 {
+    display.display();
     return SUCCESS;
 }
