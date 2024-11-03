@@ -2,16 +2,40 @@
 #include "my_macros.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/io_context.hpp>
-#include <boost/asio/io_service.hpp>
+#include <boost/system/detail/error_code.hpp>
+#include <iostream>
 
 Network::Network()
-  : io_service()
-  , socket(io_service)
+  : io_context()
+  , port_to_listen(3000)
+  , acceptor(io_context)
+  , endpoint(boost::asio::ip::tcp::v4(), port_to_listen)
+  , socket(io_context)
   , buffer()
 {
+    this->start_tcp_serveur();
 }
 
 Network::~Network() {}
+
+int
+Network::start_tcp_serveur()
+{
+    const auto handler = [](const boost::system::error_code& error) {
+        if (error) {
+            std::cerr << "An error occurend: " << error.what() << std::endl;
+        }
+    };
+
+    this->acceptor.open(this->endpoint.protocol());
+    this->acceptor.bind(this->endpoint);
+
+    this->acceptor.async_accept(this->socket, handler);
+
+    this->io_context.run();
+
+    return SUCCESS;
+}
 
 int
 Network::send_data(const std::string& ip_receiver, const std::string& data)

@@ -15,10 +15,16 @@ class Network
     int retrieve_send_datas();
 
   private:
-    boost::asio::io_service io_service;
+    const int port_to_listen;
+
+    boost::asio::io_context io_context;
+    boost::asio::ip::tcp::endpoint endpoint;
+    boost::asio::ip::tcp::acceptor acceptor;
     boost::asio::ip::tcp::socket socket;
+
     boost::asio::streambuf buffer;
 
+    int start_tcp_serveur();
     int convert_string_to_send_data(const std::string& data);
     std::string convert_received_data_to_string(const int data);
 };
