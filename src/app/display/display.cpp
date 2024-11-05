@@ -2,6 +2,7 @@
 #include "my_macros.hpp"
 #include "string"
 #include "iostream"
+#include "stdlib.h"
 
 Disp::Disp() {
     this->recipient = "Recipient";
@@ -17,6 +18,7 @@ Disp::display() {
 
 int
 Disp::display_prompt(std::string& recipient) {
-    std::cout << "Message with " << recipient << ": ";
+    std::cout << BOLDBLUE << "Message with " << RESET;
+    std::cout << BOLDRED << recipient << RESET << std::endl;
     return SUCCESS;
 }
